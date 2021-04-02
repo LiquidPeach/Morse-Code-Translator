@@ -15,7 +15,7 @@ Morse::~Morse(){
     std::cout << "Nodes deleted, bye-bye\n";
 }
 
-Node* Morse::searchTreePrivate(std::string word, Node *leaf, std::string::size_type index){
+Node* Morse::searchTreePrivate(const std::string& word, Node *leaf, std::string::size_type index){
 
     if(leaf != nullptr && index < word.length()){
         if(word[index] == '.'){
@@ -30,12 +30,15 @@ Node* Morse::searchTreePrivate(std::string word, Node *leaf, std::string::size_t
     return leaf;
 }
 
-void Morse::initTree(void){ //Creating the Morse Tree
+void Morse::initTree(void){                 //Creating the Morse Tree
 
     for(int i='A'; i<='Z'; i++){            //Putting the alphabet from A-Z into array of nodes
         letters[(i-'A')+1]->data = char(i); //Add 1 since the first index (root node) must be empty,
                                             //according to the template Morse tree
     }
+
+    /** Building the tree manually using the Morse Tree template as reference **/
+    /** Level 1 of the tree is the empty node at the start of the tree **/
 
     set_left('E', 0);   //Level 2 of tree
     set_right('T', 0);
@@ -71,7 +74,7 @@ void Morse::initTree(void){ //Creating the Morse Tree
 
 int Morse::set_left(char letter, int parent){ //Sets the left pointer of a node
 
-    if(letters[parent] != nullptr){       //If the element is valid
+    if(letters[parent] != nullptr){    //If the element is valid
 
         letters[parent]->left = letters[(parent*2)+1];
         letters[(parent*2)+1]->data = letter;
@@ -91,7 +94,7 @@ int Morse::set_right(char letter, int parent){ //Sets the right pointer of a nod
     return 0;
 }
 
-void Morse::searchTree(std::string word){
+void Morse::searchTree(const std::string& word){
 
     searchTreePrivate(word, letters[0], 0);
 }

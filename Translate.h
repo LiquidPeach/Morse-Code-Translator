@@ -1,19 +1,13 @@
-#ifndef TRANSLATE_H
-#define TRANSLATE_H
+#pragma once
 
-#include<iostream>
+#include<string>
 
 class Translate {
 
-private:
-
-
 public:
-    Translate();
-    virtual ~Translate();
-    void parse(std::string input);
-    void toEnglish(std::string word);
+    Translate() = default;
+    virtual ~Translate() = default;
+    void parse(const std::string& input);
+    void toEnglish(const std::string& word);
 
 };
-
-#endif // TRANSLATE_H

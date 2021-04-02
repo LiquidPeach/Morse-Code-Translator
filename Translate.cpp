@@ -2,19 +2,10 @@
 #include "Morse.h"
 
 #include<iostream>
-#include<string>
-#include<sstream>
 
-using std::string;
-using std::stringstream;
+void Translate::parse(const std::string& input){
 
-Translate::Translate(){}
-
-Translate::~Translate(){}
-
-void Translate::parse(string input){
-
-    string token = "";
+    std::string token = "";
 
     for(auto x : input){
         if(x == ' '){
@@ -28,14 +19,12 @@ void Translate::parse(string input){
     toEnglish(token);
 }
 
-void Translate::toEnglish(string word){
+void Translate::toEnglish(const std::string& word){
     if(word.length() > 4){
         std::cout << "Invalid entry\n";
         return;
     }
 
-    Morse *code = new Morse();
-    code->searchTree(word);
-
-    delete code;
+    Morse code;
+    code.searchTree(word);
 }
